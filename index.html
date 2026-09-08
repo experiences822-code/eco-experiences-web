@@ -4,17 +4,129 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#11110f">
+    <meta name="description"
+        content="ECO.EXPERIENCES — laboratorio creativo de diseño, arte, objetos, espacios y experiencias.">
 
     <title>ECO.EXPERIENCES | Laboratorio creativo</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Satisfy&family=Syne:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <!-- =========================
+    <!-- =====================================================
+         ECO.TRONIC — ASISTENTE DEL LABORATORIO
+         ===================================================== -->
+
+    <aside class="eco-tronic" id="ecoTronic" aria-label="ECO.TRONIC">
+
+        <div class="tronic-header">
+
+            <div class="tronic-brand">
+
+                <span class="tronic-status" aria-hidden="true"></span>
+
+                <div>
+                    <strong>ECO<span>.</span>TRONIC</strong>
+                    <small>INTELIGENCIA DEL LABORATORIO</small>
+                </div>
+
+            </div>
+
+            <button class="tronic-close" id="tronicClose" type="button" aria-label="Cerrar ECO.TRONIC">
+                ×
+            </button>
+
+        </div>
+
+        <div class="tronic-line" aria-hidden="true"></div>
+
+        <div class="tronic-chat" id="tronicChat">
+
+            <div class="tronic-welcome">
+
+                <div class="tronic-orb" aria-hidden="true">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+
+                <h2>Hola.</h2>
+
+                <p>
+                    Soy <strong>ECO.TRONIC</strong>,
+                    la inteligencia detrás del laboratorio.
+                </p>
+
+                <p>
+                    Cuéntame qué quieres crear
+                    y exploraremos el camino.
+                </p>
+
+            </div>
+
+            <div class="tronic-messages" id="tronicMessages" aria-live="polite">
+            </div>
+
+            <div class="tronic-options" id="tronicOptions">
+
+                <button type="button" data-message="Quiero crear un proyecto">
+                    QUIERO CREAR
+                </button>
+
+                <button type="button" data-message="Quiero explorar proyectos">
+                    EXPLORAR
+                </button>
+
+                <button type="button" data-message="Quiero conocer ECO.EXPERIENCES">
+                    CONOCER EL LABORATORIO
+                </button>
+
+            </div>
+
+        </div>
+
+        <form class="tronic-input" id="tronicForm">
+
+            <input type="text" id="tronicInput" placeholder="Cuéntame tu idea..." autocomplete="off"
+                aria-label="Escribe tu idea">
+
+            <button type="submit" aria-label="Enviar">
+                ↗
+            </button>
+
+        </form>
+
+        <div class="tronic-footer">
+            <span>ECO.TRONIC / 001</span>
+            <span>CREATIVE INTELLIGENCE</span>
+        </div>
+
+    </aside>
+
+
+    <!-- BOTÓN MÓVIL ECO.TRONIC -->
+
+    <button class="tronic-toggle" id="tronicToggle" type="button" aria-label="Abrir ECO.TRONIC"
+        aria-controls="ecoTronic">
+
+        <span></span>
+        <span></span>
+        <span></span>
+
+    </button>
+
+
+    <!-- =====================================================
          NAVEGACIÓN
-    ========================== -->
+         ===================================================== -->
 
     <header>
 
@@ -22,80 +134,128 @@
             ECO<span class="eco-dot">.</span>EXPERIENCES
         </div>
 
-        <nav>
+        <nav aria-label="Navegación principal">
+
             <a href="#inicio">Inicio</a>
-            <a href="#presentacion">ECO.EXPERIENCES</a>
-            <a href="#proyectos">Proyectos</a>
-            <a href="#lab">ECO.LAB</a>
-            <a href="#red">ECO.RED</a>
+
+            <a href="#presentacion">
+                ECO.EXPERIENCES
+            </a>
+
+            <a href="#proyectos">
+                Proyectos
+            </a>
+
+            <a href="#lab">
+                ECO.LAB
+            </a>
+
+            <a href="#red">
+                ECO.RED
+            </a>
+
         </nav>
+
+        <button class="menu-button" type="button" aria-label="Abrir menú" aria-controls="mobileMenu"
+            aria-expanded="false">
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </button>
 
     </header>
 
 
+    <!-- MENÚ MÓVIL -->
+
+    <div id="mobileMenu" class="mobile-menu" aria-hidden="true">
+
+        <a href="#inicio">
+            Inicio
+        </a>
+
+        <a href="#presentacion">
+            ECO.EXPERIENCES
+        </a>
+
+        <a href="#proyectos">
+            Proyectos
+        </a>
+
+        <a href="#lab">
+            ECO.LAB
+        </a>
+
+        <a href="#red">
+            ECO.RED
+        </a>
+
+    </div>
+
+
+    <!-- =====================================================
+         CONTENIDO PRINCIPAL
+         ===================================================== -->
+
     <main>
 
-        <!-- =========================
+
+        <!-- =================================================
              HERO
-        ========================== -->
+             ================================================= -->
 
         <section id="inicio" class="hero">
 
-            <!--
-                IMPORTANTE:
-                Esta imagen funciona solamente como FONDO.
-                El letrero se construye con HTML + CSS.
-            -->
-
-            <img
-                src="images/banner.png"
-                alt="Laboratorio creativo de ECO.EXPERIENCES"
-                class="hero-image"
-            >
+            <img src="images/banner.png" alt="Laboratorio creativo de ECO.EXPERIENCES" class="hero-image"
+                fetchpriority="high" decoding="async">
 
             <div class="hero-overlay"></div>
 
 
             <div class="hero-content">
 
-                <!-- LETRERO -->
-
                 <div class="hero-sign">
 
-                    <h1 class="hero-brand-title">
-                        ECO<span class="eco-dot">.</span>EXPERIENCES
-                    </h1>
+                    <div class="hero-sign-frame">
 
-                    <p class="hero-lab">
-                        LABORATORIO CREATIVO
-                    </p>
+                        <h1 class="hero-brand-title">
+                            ECO<span class="eco-dot">.</span>EXPERIENCES
+                        </h1>
 
-                    <div class="hero-line"></div>
-
-                    <p class="hero-slogan">
-                        IDEAS QUE TOMAN FORMA
-                    </p>
+                    </div>
 
                 </div>
 
 
-                <!-- DESCRIPCIÓN -->
+                <p class="hero-lab">
+                    LABORATORIO CREATIVO
+                </p>
+
+
+                <div class="hero-line" aria-hidden="true">
+                </div>
+
+
+                <p class="hero-slogan">
+                    IDEAS QUE TOMAN FORMA
+                </p>
+
 
                 <p class="hero-description">
                     Diseño · Arte · Objetos · Espacios · Experiencias
                 </p>
 
 
-                <!-- BOTÓN -->
-
                 <a href="#presentacion" class="button hero-button">
+
                     DESCUBRIR ECO.EXPERIENCES
+
                 </a>
 
             </div>
 
-
-            <!-- INDICADOR -->
 
             <div class="hero-scroll">
 
@@ -108,10 +268,9 @@
         </section>
 
 
-
-        <!-- =========================
+        <!-- =================================================
              PRESENTACIÓN
-        ========================== -->
+             ================================================= -->
 
         <section id="presentacion" class="presentation">
 
@@ -130,20 +289,18 @@
                 </h2>
 
                 <p class="intro-text">
-
-                    Somos un <strong>laboratorio creativo</strong> que conecta
-                    talento, diseño, materiales y tecnología para transformar
-                    ideas en experiencias.
-
+                    Somos un
+                    <strong>laboratorio creativo</strong>
+                    que conecta talento, diseño, materiales y tecnología
+                    para transformar ideas en experiencias.
                 </p>
 
             </div>
 
 
-
-            <!-- =========================
+            <!-- =================================================
                  IDEA
-            ========================== -->
+                 ================================================= -->
 
             <div class="idea-section">
 
@@ -168,14 +325,15 @@
                     </h3>
 
                     <p>
-                        Cada proyecto es diferente. Por eso no creemos en
-                        soluciones prefabricadas.
+                        Cada proyecto es diferente.
+                        Por eso no creemos en soluciones prefabricadas.
                     </p>
 
                     <p>
-                        Escuchamos lo que necesitas, analizamos el proyecto
-                        y buscamos la combinación adecuada de creatividad,
-                        talento, materiales y tecnología para hacerlo realidad.
+                        Escuchamos lo que necesitas,
+                        analizamos el proyecto y buscamos la combinación
+                        adecuada de creatividad, talento, materiales y
+                        tecnología para hacerlo realidad.
                     </p>
 
                 </div>
@@ -183,10 +341,9 @@
             </div>
 
 
-
-            <!-- =========================
+            <!-- =================================================
                  PILARES
-            ========================== -->
+                 ================================================= -->
 
             <div class="pillars-section">
 
@@ -203,7 +360,6 @@
                     </h2>
 
                 </div>
-
 
 
                 <div class="pillars">
@@ -229,7 +385,6 @@
                     </article>
 
 
-
                     <!-- DISEÑO -->
 
                     <article class="pillar">
@@ -250,7 +405,6 @@
                     </article>
 
 
-
                     <!-- MATERIALES -->
 
                     <article class="pillar">
@@ -269,7 +423,6 @@
                         </p>
 
                     </article>
-
 
 
                     <!-- TECNOLOGÍA -->
@@ -295,18 +448,15 @@
                 </div>
 
 
-
                 <div class="technology-quote">
 
                     <span></span>
 
                     <p>
                         La tecnología acelera el proceso.
-
                         <strong>
                             El criterio creativo decide el resultado.
                         </strong>
-
                     </p>
 
                 </div>
@@ -314,18 +464,15 @@
             </div>
 
 
-
-            <!-- =========================
+            <!-- =================================================
                  CONEXIONES
-            ========================== -->
+                 ================================================= -->
 
             <div class="connection-section">
-
 
                 <p class="small-title">
                     TODO CONECTA
                 </p>
-
 
                 <h2>
                     Un laboratorio.<br>
@@ -334,16 +481,12 @@
                 </h2>
 
 
-
                 <div class="connection-system">
 
 
                     <div class="system-center">
-
                         ECO<span class="eco-dot">.</span>EXPERIENCES
-
                     </div>
-
 
 
                     <div class="system-node node-lab">
@@ -359,7 +502,6 @@
                     </div>
 
 
-
                     <div class="system-node node-red">
 
                         <strong>
@@ -371,7 +513,6 @@
                         </span>
 
                     </div>
-
 
 
                     <div class="system-node node-experiences">
@@ -391,10 +532,9 @@
             </div>
 
 
-
-            <!-- =========================
+            <!-- =================================================
                  PROYECTOS
-            ========================== -->
+                 ================================================= -->
 
             <section id="proyectos" class="projects-section">
 
@@ -419,7 +559,6 @@
                 </div>
 
 
-
                 <div class="projects-grid">
 
 
@@ -429,10 +568,8 @@
 
                         <div class="project-image">
 
-                            <img
-                                src="images/minotauro.png"
-                                alt="Proyecto Minotauro — Carnes"
-                            >
+                            <img src="images/minotauro.png" alt="Proyecto Minotauro — Carnes" loading="lazy"
+                                decoding="async">
 
                         </div>
 
@@ -456,17 +593,13 @@
                     </article>
 
 
-
                     <!-- BOLO -->
 
                     <article class="project-card">
 
                         <div class="project-image">
 
-                            <img
-                                src="images/bolo.png"
-                                alt="Proyecto Bolo Club Social"
-                            >
+                            <img src="images/bolo.png" alt="Proyecto Bolo Club Social" loading="lazy" decoding="async">
 
                         </div>
 
@@ -490,24 +623,17 @@
                     </article>
 
 
-
                     <!-- EVENTOS -->
 
                     <article class="project-card event-card">
 
                         <div class="project-image event-images">
 
-                            <img
-                                class="event-image event-main"
-                                src="images/evento.png"
-                                alt="Decoración y experiencias para eventos"
-                            >
+                            <img class="event-image event-main" src="images/evento.png"
+                                alt="Decoración y experiencias para eventos" loading="lazy" decoding="async">
 
-                            <img
-                                class="event-image event-hover"
-                                src="images/demogorgon.png"
-                                alt="Escultura para evento"
-                            >
+                            <img class="event-image event-hover" src="images/demogorgon.png" alt="Escultura para evento"
+                                loading="lazy" decoding="async">
 
                         </div>
 
@@ -535,10 +661,9 @@
             </section>
 
 
-
-            <!-- =========================
+            <!-- =================================================
                  ECO.LAB
-            ========================== -->
+                 ================================================= -->
 
             <section id="lab" class="ecosystem-block lab-block">
 
@@ -568,20 +693,18 @@
                 </div>
 
 
-                <a
-                    href="#eco-lab-form"
-                    class="button green-button"
-                >
+                <a href="#eco-lab-form" class="button green-button">
+
                     ENTRAR A ECO.LAB →
+
                 </a>
 
             </section>
 
 
-
-            <!-- =========================
+            <!-- =================================================
                  ECO.RED
-            ========================== -->
+                 ================================================= -->
 
             <section id="red" class="ecosystem-block red-block">
 
@@ -611,10 +734,7 @@
                 </div>
 
 
-                <button
-                    class="locked-button"
-                    type="button"
-                >
+                <button class="locked-button" type="button">
 
                     <span class="lock-icon">
                         🔒
@@ -631,10 +751,9 @@
             </section>
 
 
-
-            <!-- =========================
+            <!-- =================================================
                  DECISIÓN FINAL
-            ========================== -->
+                 ================================================= -->
 
             <section class="final-choice">
 
@@ -650,16 +769,12 @@
                 </h2>
 
 
-
                 <div class="choice-grid">
 
 
                     <!-- ECO.LAB -->
 
-                    <a
-                        href="#eco-lab-form"
-                        class="choice-card"
-                    >
+                    <a href="#eco-lab-form" class="choice-card">
 
                         <div class="choice-number">
                             01
@@ -684,7 +799,6 @@
                         </div>
 
                     </a>
-
 
 
                     <!-- ECO.RED -->
@@ -722,7 +836,6 @@
                 </div>
 
 
-
                 <div class="final-brand">
 
                     <span>
@@ -740,15 +853,11 @@
         </section>
 
 
-
-        <!-- =========================
+        <!-- =================================================
              ECO.LAB FORMULARIO
-        ========================== -->
+             ================================================= -->
 
-        <section
-            id="eco-lab-form"
-            class="placeholder-section"
-        >
+        <section id="eco-lab-form" class="placeholder-section">
 
             <p class="small-title">
                 ECO.LAB
@@ -767,10 +876,9 @@
     </main>
 
 
-
-    <!-- =========================
+    <!-- =====================================================
          FOOTER
-    ========================== -->
+         ===================================================== -->
 
     <footer>
 
@@ -789,51 +897,341 @@
     </footer>
 
 
-
-    <!-- =========================
+    <!-- =====================================================
          JAVASCRIPT
-    ========================== -->
+         ===================================================== -->
 
     <script>
+
+        /* =================================================
+           ELEMENTOS PRINCIPALES
+           ================================================= */
 
         const header =
             document.querySelector("header");
 
+        const menuButton =
+            document.querySelector(".menu-button");
 
-        /* Header al hacer scroll */
-
-        window.addEventListener("scroll", () => {
-
-            if (window.scrollY > 80) {
-
-                header.classList.add("scrolled");
-
-            } else {
-
-                header.classList.remove("scrolled");
-
-            }
-
-        });
-
-
-        /* ECO.RED bloqueado */
+        const mobileMenu =
+            document.querySelector("#mobileMenu");
 
         const lockedButton =
             document.querySelector(".locked-button");
 
 
-        if (lockedButton) {
+        /* =================================================
+           HEADER
+           ================================================= */
 
-            lockedButton.addEventListener("click", () => {
+        const updateHeader = () => {
 
-                alert(
-                    "ECO.RED todavía está en construcción. Muy pronto podrás formar parte de nuestra red creativa."
+            header.classList.toggle(
+                "scrolled",
+                window.scrollY > 80
+            );
+
+        };
+
+        updateHeader();
+
+        window.addEventListener(
+            "scroll",
+            updateHeader,
+            { passive: true }
+        );
+
+
+        /* =================================================
+           MENÚ MÓVIL
+           ================================================= */
+
+        const closeMenu = () => {
+
+            menuButton.classList.remove("is-open");
+
+            menuButton.setAttribute(
+                "aria-expanded",
+                "false"
+            );
+
+            mobileMenu.classList.remove("is-open");
+
+            mobileMenu.setAttribute(
+                "aria-hidden",
+                "true"
+            );
+
+        };
+
+
+        menuButton.addEventListener(
+            "click",
+            () => {
+
+                const isOpen =
+                    menuButton.classList.toggle("is-open");
+
+                menuButton.setAttribute(
+                    "aria-expanded",
+                    String(isOpen)
+                );
+
+                mobileMenu.classList.toggle(
+                    "is-open",
+                    isOpen
+                );
+
+                mobileMenu.setAttribute(
+                    "aria-hidden",
+                    String(!isOpen)
+                );
+
+            }
+        );
+
+
+        mobileMenu
+            .querySelectorAll("a")
+            .forEach(link => {
+
+                link.addEventListener(
+                    "click",
+                    closeMenu
                 );
 
             });
 
+
+        /* =================================================
+           ECO.RED
+           ================================================= */
+
+        if (lockedButton) {
+
+            lockedButton.addEventListener(
+                "click",
+                () => {
+
+                    alert(
+                        "ECO.RED todavía está en construcción. " +
+                        "Muy pronto podrás formar parte de nuestra red creativa."
+                    );
+
+                }
+            );
+
         }
+
+
+        /* =================================================
+           ECO.TRONIC
+           ================================================= */
+
+        const tronic =
+            document.getElementById("ecoTronic");
+
+        const tronicToggle =
+            document.getElementById("tronicToggle");
+
+        const tronicClose =
+            document.getElementById("tronicClose");
+
+        const tronicForm =
+            document.getElementById("tronicForm");
+
+        const tronicInput =
+            document.getElementById("tronicInput");
+
+        const tronicMessages =
+            document.getElementById("tronicMessages");
+
+        const tronicOptions =
+            document.querySelectorAll(
+                ".tronic-options button"
+            );
+
+
+        /* Abrir */
+
+        const openTronic = () => {
+
+            tronic?.classList.add(
+                "is-open"
+            );
+
+        };
+
+
+        /* Cerrar */
+
+        const closeTronic = () => {
+
+            tronic?.classList.remove(
+                "is-open"
+            );
+
+        };
+
+
+        tronicToggle?.addEventListener(
+            "click",
+            openTronic
+        );
+
+
+        tronicClose?.addEventListener(
+            "click",
+            closeTronic
+        );
+
+
+        /* =================================================
+           MENSAJES
+           ================================================= */
+
+        const addTronicMessage = (
+            text,
+            type
+        ) => {
+
+            if (!tronicMessages) return;
+
+
+            const message =
+                document.createElement("div");
+
+
+            message.className =
+                `tronic-message ${type}`;
+
+
+            message.textContent =
+                text;
+
+
+            tronicMessages.appendChild(
+                message
+            );
+
+
+            tronicMessages.scrollTop =
+                tronicMessages.scrollHeight;
+
+        };
+
+
+        /* =================================================
+           RESPUESTA TEMPORAL
+           ================================================= */
+
+        const respondToIdea = () => {
+
+            window.setTimeout(
+                () => {
+
+                    addTronicMessage(
+                        "Cuéntame un poco más sobre tu idea. " +
+                        "ECO.TRONIC irá construyendo tu proyecto paso a paso.",
+                        "bot"
+                    );
+
+                },
+                450
+            );
+
+        };
+
+
+        /* =================================================
+           OPCIONES
+           ================================================= */
+
+        tronicOptions.forEach(
+            button => {
+
+                button.addEventListener(
+                    "click",
+                    () => {
+
+                        addTronicMessage(
+                            button.dataset.message || "",
+                            "user"
+                        );
+
+                        respondToIdea();
+
+                    }
+                );
+
+            }
+        );
+
+
+        /* =================================================
+           INPUT
+           ================================================= */
+
+        tronicForm?.addEventListener(
+            "submit",
+            event => {
+
+                event.preventDefault();
+
+
+                const text =
+                    tronicInput?.value.trim();
+
+
+                if (!text) return;
+
+
+                addTronicMessage(
+                    text,
+                    "user"
+                );
+
+
+                tronicInput.value =
+                    "";
+
+
+                respondToIdea();
+
+            }
+        );
+
+
+        /* =================================================
+           ESC — CERRAR ECO.TRONIC
+           ================================================= */
+
+        document.addEventListener(
+            "keydown",
+            event => {
+
+                if (event.key === "Escape") {
+                    closeTronic();
+                }
+
+            }
+        );
+
+
+        /* =================================================
+           RESPONSIVE
+           ================================================= */
+
+        window.addEventListener(
+            "resize",
+            () => {
+
+                if (window.innerWidth > 650) {
+                    closeTronic();
+                }
+
+            }
+        ); 
 
     </script>
 
