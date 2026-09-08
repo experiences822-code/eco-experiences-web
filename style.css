@@ -1,13 +1,42 @@
+/* =========================================================
+   ECO.EXPERIENCES
+   CSS MADRE — LABORATORIO CREATIVO
+   ========================================================= */
+
+
+/* =========================================================
+   01. VARIABLES
+   ========================================================= */
+
 :root {
+
     --bg: #11110f;
-    --bg-soft: #171714;
-    --paper: #e9e6dc;
-    --muted: rgba(233, 230, 220, 0.62);
-    --line: rgba(233, 230, 220, 0.14);
+    --bg-soft: #151512;
+    --bg-deep: #0d0d0b;
+
+    --paper: #f4f1e9;
+    --paper-soft: #e9e6dc;
+
+    --muted: rgba(233, 230, 220, .62);
+    --muted-soft: rgba(233, 230, 220, .42);
+
+    --line: rgba(233, 230, 220, .14);
+    --line-soft: rgba(233, 230, 220, .08);
+
     --green: #789c65;
-    --green-bright: #9ab77e;
+    --green-bright: #a8bf7a;
+
+    --gold: #dcbc78;
+
     --black: #090908;
+
+    --ease: cubic-bezier(.22, 1, .36, 1);
 }
+
+
+/* =========================================================
+   02. RESET
+   ========================================================= */
 
 * {
     margin: 0;
@@ -15,20 +44,44 @@
     box-sizing: border-box;
 }
 
+
 html {
     scroll-behavior: smooth;
 }
 
+
 body {
+    min-width: 320px;
+
     background: var(--bg);
     color: var(--paper);
-    font-family: Arial, Helvetica, sans-serif;
+
+    font-family: "DM Sans", Arial, Helvetica, sans-serif;
+
     overflow-x: hidden;
 }
+
+
+img {
+    max-width: 100%;
+}
+
+
+button,
+input {
+    font: inherit;
+}
+
+
+button {
+    border: 0;
+}
+
 
 a {
     color: inherit;
 }
+
 
 ::selection {
     background: var(--green);
@@ -36,18 +89,22 @@ a {
 }
 
 
-/* =========================================
-   NAVEGACIÓN
-========================================= */
+/* =========================================================
+   03. NAVEGACIÓN PRINCIPAL
+   ========================================================= */
 
 header {
     position: fixed;
+
     top: 0;
     left: 0;
+
     width: 100%;
     height: 78px;
+
     padding: 0 5%;
-    z-index: 100;
+
+    z-index: 8000;
 
     display: flex;
     align-items: center;
@@ -56,68 +113,211 @@ header {
     border-bottom: 1px solid transparent;
 
     transition:
-        background 0.4s ease,
-        border-color 0.4s ease,
-        backdrop-filter 0.4s ease;
+        background .4s ease,
+        border-color .4s ease,
+        backdrop-filter .4s ease;
 }
+
 
 header.scrolled {
-    background: rgba(12, 12, 10, 0.86);
+    background: rgba(12, 12, 10, .86);
+
     border-color: var(--line);
+
     backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
 }
 
+
 .logo {
-    font-size: 18px;
-    font-weight: 500;
-    letter-spacing: -0.7px;
+    font-family: "Syne", sans-serif;
+
+    font-size: 17px;
+    font-weight: 600;
+
+    letter-spacing: -.5px;
+
     white-space: nowrap;
 }
+
 
 .eco-dot {
     color: var(--green-bright);
 }
 
+
 nav {
     display: flex;
-    gap: 26px;
+
     align-items: center;
+
+    gap: 27px;
 }
+
 
 nav a {
     text-decoration: none;
-    font-size: 9px;
-    letter-spacing: 1.8px;
-    text-transform: uppercase;
-    color: rgba(233, 230, 220, 0.72);
 
-    transition: color 0.25s ease;
+    font-size: 8px;
+
+    font-weight: 500;
+
+    letter-spacing: 1.7px;
+
+    text-transform: uppercase;
+
+    color: rgba(233, 230, 220, .72);
+
+    transition:
+        color .25s ease,
+        opacity .25s ease;
 }
+
 
 nav a:hover {
     color: var(--paper);
 }
 
 
-/* =========================================
-   HERO
-========================================= */
+/* =========================================================
+   04. MENÚ MÓVIL
+   ========================================================= */
+
+.menu-button {
+    display: none;
+
+    width: 42px;
+    height: 42px;
+
+    align-items: center;
+    justify-content: center;
+
+    flex-direction: column;
+
+    gap: 5px;
+
+    background: transparent;
+
+    cursor: pointer;
+}
+
+
+.menu-button span {
+    display: block;
+
+    width: 19px;
+    height: 1px;
+
+    background: var(--paper);
+
+    transition:
+        transform .3s ease,
+        opacity .3s ease;
+}
+
+
+.menu-button.is-open span:nth-child(1) {
+    transform: translateY(6px) rotate(45deg);
+}
+
+
+.menu-button.is-open span:nth-child(2) {
+    opacity: 0;
+}
+
+
+.menu-button.is-open span:nth-child(3) {
+    transform: translateY(-6px) rotate(-45deg);
+}
+
+
+.mobile-menu {
+    position: fixed;
+
+    top: 66px;
+    left: 0;
+
+    width: 100%;
+
+    z-index: 7900;
+
+    display: none;
+    flex-direction: column;
+
+    padding: 20px 7% 25px;
+
+    background:
+        rgba(13, 13, 11, .96);
+
+    border-bottom: 1px solid var(--line);
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    transform: translateY(-10px);
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    transition:
+        transform .35s var(--ease),
+        opacity .3s ease;
+}
+
+
+.mobile-menu.is-open {
+    transform: translateY(0);
+
+    opacity: 1;
+
+    pointer-events: auto;
+}
+
+
+.mobile-menu a {
+    padding: 15px 0;
+
+    border-bottom: 1px solid var(--line-soft);
+
+    text-decoration: none;
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+
+    color: var(--paper);
+}
+
+
+.mobile-menu a:last-child {
+    border-bottom: 0;
+}
+
+
+/* =========================================================
+   05. HERO
+   ========================================================= */
 
 .hero {
     position: relative;
 
     width: 100%;
     height: 100vh;
-    min-height: 700px;
 
-    overflow: hidden;
+    min-height: 680px;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
+    overflow: hidden;
+
     background: var(--bg);
 }
+
 
 .hero-image {
     position: absolute;
@@ -128,6 +328,7 @@ nav a:hover {
     height: 100%;
 
     object-fit: cover;
+
     object-position: center;
 
     z-index: 1;
@@ -138,12 +339,11 @@ nav a:hover {
         transform 1.2s ease;
 }
 
+
 .hero:hover .hero-image {
     transform: scale(1.025);
 }
 
-
-/* Capa ligera para conservar la luminosidad */
 
 .hero-overlay {
     position: absolute;
@@ -155,216 +355,303 @@ nav a:hover {
     pointer-events: none;
 
     background:
-        linear-gradient(
-            to bottom,
-            rgba(8, 8, 7, 0.12) 0%,
-            rgba(8, 8, 7, 0.02) 42%,
-            rgba(8, 8, 7, 0.18) 72%,
-            rgba(17, 17, 15, 0.94) 100%
-        );
+        linear-gradient(to bottom,
+            rgba(8, 8, 7, .12) 0%,
+            rgba(8, 8, 7, .02) 42%,
+            rgba(8, 8, 7, .18) 72%,
+            rgba(17, 17, 15, .94) 100%);
 }
 
 
-/* =========================================
-   CONTENIDO HERO
-========================================= */
+/* =========================================================
+   06. CONTENIDO HERO
+   ========================================================= */
 
 .hero-content {
     position: relative;
 
     z-index: 3;
 
-    width: min(92%, 1180px);
+    width: min(92%, 1200px);
+
+    margin: 0 auto;
 
     display: flex;
     flex-direction: column;
+
     align-items: center;
+    justify-content: center;
 
     text-align: center;
 }
 
 
-/* =========================================
-   LETRERO
-========================================= */
+/* =========================================================
+   07. CONTENEDOR DEL LOGO
+   ========================================================= */
 
 .hero-sign {
-    width: min(92%, 950px);
-
-    padding: 38px 55px 34px;
-
     position: relative;
 
-    background:
-        linear-gradient(
-            135deg,
-            rgba(48, 31, 18, 0.94),
-            rgba(91, 61, 35, 0.94)
-        );
+    width: min(760px, 76vw);
 
-    border: 1px solid rgba(205, 175, 125, 0.38);
+    margin: 0 auto;
 
-    box-shadow:
-        0 24px 70px rgba(0, 0, 0, 0.46),
-        inset 0 0 34px rgba(0, 0, 0, 0.18);
+    display: flex;
 
-    transform: translateY(0);
-
-    transition:
-        transform 0.5s ease,
-        box-shadow 0.5s ease;
+    align-items: center;
+    justify-content: center;
 }
 
-.hero-sign::before,
-.hero-sign::after {
+
+.hero-sign-frame {
+    position: relative;
+
+    width: 100%;
+
+    min-width: 0;
+
+    padding:
+        clamp(13px, 1.5vw, 20px) clamp(25px, 3vw, 42px);
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    box-sizing: border-box;
+
+    border:
+        1px solid rgba(235, 225, 200, .55);
+
+    border-radius: 999px;
+
+    background:
+        linear-gradient(180deg,
+            rgba(255, 255, 255, .075),
+            rgba(10, 12, 10, .30));
+
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+
+    box-shadow:
+        0 0 4px rgba(235, 225, 200, .22),
+        0 0 14px rgba(220, 190, 120, .12),
+        inset 0 0 18px rgba(255, 255, 255, .025);
+}
+
+
+.hero-sign-frame::before {
     content: "";
 
     position: absolute;
 
-    width: 14px;
-    height: 14px;
+    inset: -5px;
 
-    border: 1px solid rgba(154, 183, 126, 0.45);
+    border-radius: inherit;
+
+    background:
+        rgba(220, 190, 120, .035);
+
+    filter: blur(13px);
+
+    z-index: -1;
+
+    pointer-events: none;
 }
 
-.hero-sign::before {
-    top: 13px;
-    left: 13px;
 
-    border-right: 0;
-    border-bottom: 0;
-}
+.hero-sign-frame::after {
+    content: "";
 
-.hero-sign::after {
-    right: 13px;
-    bottom: 13px;
+    position: absolute;
 
-    border-left: 0;
-    border-top: 0;
-}
+    top: 50%;
+    left: 15px;
 
-.hero-sign:hover {
-    transform: translateY(-5px);
+    width: 5px;
+    height: 5px;
+
+    transform: translateY(-50%);
+
+    border-radius: 50%;
+
+    background:
+        rgba(154, 183, 126, .75);
 
     box-shadow:
-        0 30px 80px rgba(0, 0, 0, 0.55),
-        inset 0 0 34px rgba(0, 0, 0, 0.18);
+        0 0 7px rgba(154, 183, 126, .35);
 }
 
 
-/* =========================================
-   ECO.EXPERIENCES
-   ZOOM AL PASAR EL CURSOR
-========================================= */
+/* =========================================================
+   08. LOGO HERO
+   ========================================================= */
 
 .hero-brand-title {
+    display: block;
+
+    width: 100%;
+    max-width: 100%;
+
+    min-width: 0;
+
     margin: 0;
+    padding: 0;
 
-    font-size: clamp(45px, 7vw, 98px);
+    box-sizing: border-box;
 
-    line-height: 0.95;
+    text-align: center;
 
-    font-weight: 500;
+    white-space: nowrap;
 
-    letter-spacing: -4px;
+    overflow: hidden;
 
-    color: #f0eadf;
+    font-family: "Syne", sans-serif;
 
-    cursor: pointer;
+    font-size:
+        clamp(27px, 4.2vw, 56px);
 
-    transform-origin: center;
+    font-weight: 700;
 
-    transition:
-        transform 0.55s cubic-bezier(.2, .8, .2, 1),
-        letter-spacing 0.55s ease,
-        text-shadow 0.55s ease;
-}
+    line-height: 1;
 
+    letter-spacing:
+        clamp(-2.4px, -.18vw, -1px);
 
-/* AQUÍ ESTÁ EL EFECTO ZOOM */
-
-.hero-brand-title:hover {
-    transform: scale(1.08);
-
-    letter-spacing: -2px;
+    color: #f4f1e9;
 
     text-shadow:
-        0 8px 30px rgba(0, 0, 0, 0.35);
+        0 0 3px rgba(255, 255, 255, .30),
+        0 0 10px rgba(220, 190, 120, .12);
+
+    transition:
+        transform .45s var(--ease),
+        text-shadow .45s ease;
 }
 
 
-/* Punto verde de ECO. */
+.hero-brand-title:hover {
+    transform: scale(1.015);
 
-.eco-dot {
-    color: var(--green-bright);
+    text-shadow:
+        0 0 4px rgba(255, 255, 255, .42),
+        0 0 13px rgba(220, 190, 120, .18);
 }
 
 
-/* =========================================
-   LABORATORIO CREATIVO
-========================================= */
+.hero-brand-title .eco-dot {
+    color: #a8bf7a;
+
+    text-shadow:
+        0 0 4px rgba(168, 191, 122, .55);
+}
+
+
+/* =========================================================
+   09. LABORATORIO CREATIVO
+   ========================================================= */
 
 .hero-lab {
-    margin-top: 17px;
+    width: 100%;
 
-    font-size: clamp(11px, 1.4vw, 18px);
+    margin:
+        17px auto 0;
 
-    letter-spacing: 7px;
+    text-align: center;
 
-    color: #f0eadf;
+    font-family: "Satisfy", cursive;
+
+    font-size:
+        clamp(26px, 3vw, 42px);
 
     font-weight: 400;
+
+    line-height: 1;
+
+    letter-spacing: 0;
+
+    color: #f0e7d4;
+
+    text-shadow:
+        0 0 8px rgba(255, 220, 160, .55),
+        0 0 20px rgba(220, 190, 120, .20);
 }
 
 
-/* =========================================
-   LÍNEA
-========================================= */
+/* =========================================================
+   10. LÍNEA HERO
+   ========================================================= */
 
 .hero-line {
-    width: 120px;
+    width: 95px;
 
     height: 1px;
 
-    margin: 23px auto 19px;
+    margin:
+        17px auto 13px;
 
-    background: var(--green-bright);
+    background:
+        linear-gradient(90deg,
+            transparent,
+            var(--gold),
+            transparent);
+
+    box-shadow:
+        0 0 8px rgba(220, 190, 120, .25);
 }
 
 
-/* =========================================
-   SLOGAN
-========================================= */
+/* =========================================================
+   11. SLOGAN
+   ========================================================= */
 
 .hero-slogan {
-    margin: 0;
+    width: 100%;
 
-    font-size: clamp(12px, 1.3vw, 17px);
+    margin: 0 auto;
 
-    letter-spacing: 5px;
+    text-align: center;
 
-    color: #f0eadf;
+    font-family: "DM Sans", sans-serif;
+
+    font-size:
+        clamp(11px, 1.35vw, 17px);
+
+    font-weight: 500;
+
+    letter-spacing: 4px;
+
+    text-transform: uppercase;
+
+    color: #e8e5dc;
 }
 
 
-/* =========================================
-   DESCRIPCIÓN
-========================================= */
+/* =========================================================
+   12. DESCRIPCIÓN HERO
+   ========================================================= */
 
 .hero-description {
-    margin-top: 25px;
+    width: 100%;
 
-    font-size: 10px;
+    margin:
+        25px auto 0;
 
-    letter-spacing: 3px;
+    text-align: center;
 
-    color: rgba(255, 255, 255, 0.82);
+    font-size: 9px;
+
+    letter-spacing: 2.8px;
+
+    color:
+        rgba(255, 255, 255, .78);
 }
 
 
-/* =========================================
-   BOTÓN
-========================================= */
+/* =========================================================
+   13. BOTONES GENERALES
+   ========================================================= */
 
 .button {
     display: inline-flex;
@@ -375,26 +662,31 @@ nav a:hover {
     text-decoration: none;
 
     cursor: pointer;
+
+    transition:
+        background .3s ease,
+        color .3s ease,
+        transform .3s ease,
+        border-color .3s ease;
 }
+
 
 .hero-button {
     margin-top: 27px;
 
-    padding: 13px 23px;
+    padding:
+        13px 23px;
 
-    border: 1px solid rgba(233, 230, 220, 0.5);
+    border:
+        1px solid rgba(233, 230, 220, .50);
 
     color: var(--paper);
 
-    font-size: 9px;
+    font-size: 8px;
 
     letter-spacing: 2px;
-
-    transition:
-        background 0.3s ease,
-        color 0.3s ease,
-        transform 0.3s ease;
 }
+
 
 .hero-button:hover {
     background: var(--paper);
@@ -405,14 +697,14 @@ nav a:hover {
 }
 
 
-/* =========================================
-   SCROLL
-========================================= */
+/* =========================================================
+   14. SCROLL INDICATOR
+   ========================================================= */
 
 .hero-scroll {
     position: absolute;
 
-    bottom: 26px;
+    bottom: 25px;
     left: 50%;
 
     transform: translateX(-50%);
@@ -420,53 +712,62 @@ nav a:hover {
     z-index: 4;
 
     display: flex;
+
     flex-direction: column;
+
     align-items: center;
 
     gap: 8px;
 
-    font-size: 8px;
+    font-size: 7px;
 
     letter-spacing: 3px;
 
-    color: rgba(255, 255, 255, 0.68);
+    color:
+        rgba(255, 255, 255, .62);
 }
+
 
 .hero-scroll span {
-    display: block;
-
     width: 1px;
-    height: 32px;
+    height: 31px;
 
-    background: rgba(255, 255, 255, 0.5);
+    background:
+        rgba(255, 255, 255, .48);
 }
 
 
-/* =========================================
-   PRESENTACIÓN
-========================================= */
+/* =========================================================
+   15. PRESENTACIÓN
+   ========================================================= */
 
 .presentation {
     background: var(--bg);
 }
+
 
 .presentation-intro {
     max-width: 1200px;
 
     margin: 0 auto;
 
-    padding: 150px 6% 130px;
+    padding:
+        150px 6% 130px;
 }
+
 
 .small-title {
     color: var(--green-bright);
 
-    font-size: 9px;
+    font-size: 8px;
+
+    font-weight: 500;
 
     letter-spacing: 3px;
 
     text-transform: uppercase;
 }
+
 
 .presentation-intro h2,
 .idea-content h2,
@@ -476,20 +777,27 @@ nav a:hover {
 .ecosystem-text h2,
 .final-choice h2,
 .placeholder-section h2 {
+
     margin-top: 25px;
 
-    font-family: Georgia, "Times New Roman", serif;
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
 
     font-weight: 400;
 
-    line-height: 0.92;
+    line-height: .92;
 
     letter-spacing: -4px;
 }
 
+
 .presentation-intro h2 {
-    font-size: clamp(55px, 8vw, 105px);
+    font-size:
+        clamp(55px, 8vw, 105px);
 }
+
 
 .presentation-intro h2 span,
 .projects-heading h2 span,
@@ -497,77 +805,11 @@ nav a:hover {
     color: var(--green-bright);
 }
 
+
 .intro-text {
     max-width: 650px;
 
     margin-top: 45px;
-
-    font-size: 16px;
-
-    line-height: 1.8;
-
-    color: var(--muted);
-}
-
-.intro-text strong {
-    color: var(--paper);
-
-    font-weight: 400;
-}
-
-
-/* =========================================
-   IDEA
-========================================= */
-
-.idea-section {
-    max-width: 1200px;
-
-    margin: 0 auto;
-
-    padding: 110px 6% 160px;
-
-    display: grid;
-
-    grid-template-columns: 90px 1fr;
-
-    gap: 50px;
-
-    border-top: 1px solid var(--line);
-}
-
-.idea-number {
-    color: var(--green);
-
-    font-size: 12px;
-
-    letter-spacing: 2px;
-}
-
-.idea-content {
-    max-width: 850px;
-}
-
-.idea-content h2 {
-    font-size: clamp(52px, 7vw, 90px);
-}
-
-.idea-content h3 {
-    margin-top: 18px;
-
-    font-family: Georgia, "Times New Roman", serif;
-
-    font-size: clamp(28px, 4vw, 50px);
-
-    font-weight: 400;
-
-    color: var(--green-bright);
-}
-
-.idea-content p:not(.small-title) {
-    max-width: 680px;
-
-    margin-top: 30px;
 
     font-size: 15px;
 
@@ -577,18 +819,103 @@ nav a:hover {
 }
 
 
-/* =========================================
-   PILARES
-========================================= */
+.intro-text strong {
+    color: var(--paper);
+
+    font-weight: 500;
+}
+
+
+/* =========================================================
+   16. IDEA
+   ========================================================= */
+
+.idea-section {
+    max-width: 1200px;
+
+    margin: 0 auto;
+
+    padding:
+        110px 6% 160px;
+
+    display: grid;
+
+    grid-template-columns: 90px 1fr;
+
+    gap: 50px;
+
+    border-top:
+        1px solid var(--line);
+}
+
+
+.idea-number {
+    color: var(--green);
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+}
+
+
+.idea-content {
+    max-width: 850px;
+}
+
+
+.idea-content h2 {
+    font-size:
+        clamp(52px, 7vw, 90px);
+}
+
+
+.idea-content h3 {
+    margin-top: 18px;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size:
+        clamp(28px, 4vw, 50px);
+
+    font-weight: 400;
+
+    color: var(--green-bright);
+}
+
+
+.idea-content p:not(.small-title) {
+    max-width: 680px;
+
+    margin-top: 30px;
+
+    font-size: 14px;
+
+    line-height: 1.8;
+
+    color: var(--muted);
+}
+
+
+/* =========================================================
+   17. PILARES
+   ========================================================= */
 
 .pillars-section {
-    padding: 145px 6% 160px;
+    padding:
+        145px 6% 160px;
 
     background: #141412;
 
-    border-top: 1px solid var(--line);
-    border-bottom: 1px solid var(--line);
+    border-top:
+        1px solid var(--line);
+
+    border-bottom:
+        1px solid var(--line);
 }
+
 
 .pillars-title {
     max-width: 1200px;
@@ -596,23 +923,29 @@ nav a:hover {
     margin: 0 auto;
 }
 
+
 .pillars-title h2 {
-    font-size: clamp(55px, 7vw, 95px);
+    font-size:
+        clamp(55px, 7vw, 95px);
 }
+
 
 .pillars {
     max-width: 1200px;
 
-    margin: 90px auto 0;
+    margin:
+        90px auto 0;
 
     display: grid;
 
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns:
+        repeat(4, 1fr);
 
     gap: 1px;
 
     background: var(--line);
 }
+
 
 .pillar {
     min-height: 270px;
@@ -620,40 +953,56 @@ nav a:hover {
     padding: 30px;
 
     background: #141412;
+
+    transition:
+        background .3s ease;
 }
 
-.pillar > span {
+
+.pillar:hover {
+    background: #181815;
+}
+
+
+.pillar>span {
     color: var(--green-bright);
 
-    font-size: 10px;
+    font-size: 9px;
 
     letter-spacing: 2px;
 }
 
+
 .pillar h3 {
     margin-top: 55px;
 
-    font-family: Georgia, "Times New Roman", serif;
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
 
     font-size: 28px;
 
     font-weight: 400;
 }
 
+
 .pillar p {
     margin-top: 17px;
 
-    font-size: 12px;
+    font-size: 11px;
 
     line-height: 1.7;
 
     color: var(--muted);
 }
 
+
 .technology-quote {
     max-width: 1200px;
 
-    margin: 70px auto 0;
+    margin:
+        70px auto 0;
 
     display: flex;
 
@@ -662,23 +1011,29 @@ nav a:hover {
     gap: 20px;
 }
 
-.technology-quote > span {
-    width: 55px;
 
+.technology-quote>span {
+    width: 55px;
     height: 1px;
 
-    background: var(--green-bright);
-
     flex-shrink: 0;
+
+    background: var(--green-bright);
 }
 
-.technology-quote p {
-    font-family: Georgia, "Times New Roman", serif;
 
-    font-size: clamp(17px, 2vw, 24px);
+.technology-quote p {
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size:
+        clamp(17px, 2vw, 24px);
 
     color: var(--muted);
 }
+
 
 .technology-quote strong {
     color: var(--paper);
@@ -687,21 +1042,25 @@ nav a:hover {
 }
 
 
-/* =========================================
-   CONEXIONES
-========================================= */
+/* =========================================================
+   18. CONEXIONES
+   ========================================================= */
 
 .connection-section {
     max-width: 1200px;
 
     margin: 0 auto;
 
-    padding: 160px 6% 170px;
+    padding:
+        160px 6% 170px;
 }
 
+
 .connection-section h2 {
-    font-size: clamp(48px, 6vw, 80px);
+    font-size:
+        clamp(48px, 6vw, 80px);
 }
+
 
 .connection-system {
     position: relative;
@@ -710,8 +1069,10 @@ nav a:hover {
 
     height: 480px;
 
-    margin: 90px auto 0;
+    margin:
+        90px auto 0;
 }
+
 
 .connection-system::before,
 .connection-system::after {
@@ -722,23 +1083,24 @@ nav a:hover {
     background: var(--line);
 }
 
+
 .connection-system::before {
     width: 58%;
-
     height: 1px;
 
     top: 50%;
     left: 21%;
 }
 
+
 .connection-system::after {
     width: 1px;
-
     height: 62%;
 
     left: 50%;
     top: 19%;
 }
+
 
 .system-center {
     position: absolute;
@@ -746,12 +1108,14 @@ nav a:hover {
     top: 50%;
     left: 50%;
 
-    transform: translate(-50%, -50%);
+    transform:
+        translate(-50%, -50%);
 
     width: 190px;
     height: 190px;
 
-    border: 1px solid rgba(154, 183, 126, 0.5);
+    border:
+        1px solid rgba(154, 183, 126, .5);
 
     border-radius: 50%;
 
@@ -760,18 +1124,20 @@ nav a:hover {
     align-items: center;
     justify-content: center;
 
-    text-align: center;
-
     padding: 25px;
 
-    font-size: 17px;
-
-    letter-spacing: -0.5px;
+    text-align: center;
 
     background: var(--bg);
 
+    font-size: 16px;
+
     z-index: 2;
+
+    box-shadow:
+        0 0 25px rgba(168, 191, 122, .035);
 }
+
 
 .system-node {
     position: absolute;
@@ -779,7 +1145,8 @@ nav a:hover {
     width: 150px;
     height: 150px;
 
-    border: 1px solid var(--line);
+    border:
+        1px solid var(--line);
 
     background: #151512;
 
@@ -787,53 +1154,68 @@ nav a:hover {
 
     flex-direction: column;
 
-    justify-content: center;
     align-items: center;
+    justify-content: center;
 
     text-align: center;
 
     transition:
-        transform 0.35s ease,
-        border-color 0.35s ease;
+        transform .35s ease,
+        border-color .35s ease,
+        background .35s ease;
 }
+
 
 .system-node:hover {
     transform: scale(1.05);
 
-    border-color: rgba(154, 183, 126, 0.6);
+    border-color:
+        rgba(154, 183, 126, .6);
+
+    background: #191916;
 }
 
+
 .system-node strong {
-    font-size: 12px;
+    font-family: "Syne", sans-serif;
+
+    font-size: 10px;
 
     letter-spacing: 1px;
 }
 
+
 .system-node span {
     margin-top: 8px;
 
-    font-size: 8px;
+    font-size: 7px;
 
     letter-spacing: 2px;
 
     color: var(--green-bright);
 }
 
+
 .node-lab {
     top: 10px;
     left: 50%;
 
-    transform: translateX(-50%);
+    transform:
+        translateX(-50%);
 }
 
+
 .node-lab:hover {
-    transform: translateX(-50%) scale(1.05);
+    transform:
+        translateX(-50%) scale(1.05);
 }
+
 
 .node-red {
     bottom: 10px;
     left: 13%;
 }
+
 
 .node-experiences {
     bottom: 10px;
@@ -841,39 +1223,47 @@ nav a:hover {
 }
 
 
-/* =========================================
-   PROYECTOS
-========================================= */
+/* =========================================================
+   19. PROYECTOS
+   ========================================================= */
 
 .projects-section {
-    padding: 150px 6% 170px;
+    padding:
+        150px 6% 170px;
 
-    background: #11110f;
+    background: var(--bg);
 
-    border-top: 1px solid var(--line);
+    border-top:
+        1px solid var(--line);
 }
+
 
 .projects-heading {
     max-width: 1200px;
 
-    margin: 0 auto 70px;
+    margin:
+        0 auto 70px;
 }
+
 
 .projects-heading h2 {
-    font-size: clamp(55px, 7vw, 95px);
+    font-size:
+        clamp(55px, 7vw, 95px);
 }
 
-.projects-heading > p:last-child {
+
+.projects-heading>p:last-child {
     max-width: 580px;
 
     margin-top: 30px;
 
-    font-size: 15px;
+    font-size: 14px;
 
     line-height: 1.7;
 
     color: var(--muted);
 }
+
 
 .projects-grid {
     max-width: 1200px;
@@ -882,16 +1272,19 @@ nav a:hover {
 
     display: grid;
 
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns:
+        repeat(3, 1fr);
 
     gap: 18px;
 }
+
 
 .project-card {
     min-width: 0;
 
     overflow: hidden;
 }
+
 
 .project-image {
     position: relative;
@@ -905,39 +1298,47 @@ nav a:hover {
     background: #181815;
 }
 
-.project-image > img {
+
+.project-image>img {
+    display: block;
+
     width: 100%;
     height: 100%;
-
-    display: block;
 
     object-fit: cover;
 
     transition:
-        transform 0.8s ease,
-        opacity 0.7s ease;
+        transform .8s ease;
 }
 
-.project-card:hover .project-image > img {
+
+.project-card:hover .project-image>img {
     transform: scale(1.04);
 }
 
+
 .project-info {
-    padding: 18px 3px 0;
+    padding:
+        18px 3px 0;
 }
+
 
 .project-info span {
     color: var(--green);
 
-    font-size: 9px;
+    font-size: 8px;
 
     letter-spacing: 2px;
 }
 
+
 .project-info h3 {
     margin-top: 9px;
 
-    font-family: Georgia, "Times New Roman", serif;
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
 
     font-size: 22px;
 
@@ -946,22 +1347,27 @@ nav a:hover {
     font-weight: 400;
 }
 
+
 .project-info p {
     margin-top: 7px;
 
-    font-size: 10px;
+    font-size: 9px;
 
     letter-spacing: 1px;
 
-    color: rgba(233, 230, 220, 0.48);
+    color:
+        rgba(233, 230, 220, .48);
 }
 
 
-/* EVENTO — CAMBIO DE IMAGEN */
+/* =========================================================
+   20. EVENTO — HOVER
+   ========================================================= */
 
 .event-images {
     position: relative;
 }
+
 
 .event-image {
     position: absolute;
@@ -974,23 +1380,27 @@ nav a:hover {
     object-fit: cover;
 
     transition:
-        opacity 0.7s ease,
-        transform 0.9s ease;
+        opacity .7s ease,
+        transform .9s ease;
 }
+
 
 .event-main {
     opacity: 1;
 }
 
+
 .event-hover {
     opacity: 0;
 }
+
 
 .event-card:hover .event-main {
     opacity: 0;
 
     transform: scale(1.06);
 }
+
 
 .event-card:hover .event-hover {
     opacity: 1;
@@ -999,14 +1409,15 @@ nav a:hover {
 }
 
 
-/* =========================================
-   ECO.LAB / ECO.RED
-========================================= */
+/* =========================================================
+   21. ECO.LAB / ECO.RED
+   ========================================================= */
 
 .ecosystem-block {
     min-height: 620px;
 
-    padding: 140px 8%;
+    padding:
+        140px 8%;
 
     display: flex;
 
@@ -1016,67 +1427,69 @@ nav a:hover {
 
     gap: 80px;
 
-    border-top: 1px solid var(--line);
+    border-top:
+        1px solid var(--line);
 }
+
 
 .lab-block {
     background:
-        radial-gradient(
-            circle at 85% 50%,
-            rgba(120, 156, 101, 0.10),
-            transparent 30%
-        ),
+        radial-gradient(circle at 85% 50%,
+            rgba(120, 156, 101, .10),
+            transparent 30%),
         #151512;
 }
 
+
 .red-block {
     background:
-        radial-gradient(
-            circle at 15% 50%,
-            rgba(120, 156, 101, 0.06),
-            transparent 28%
-        ),
+        radial-gradient(circle at 15% 50%,
+            rgba(120, 156, 101, .06),
+            transparent 28%),
         #11110f;
 }
+
 
 .ecosystem-text {
     max-width: 680px;
 }
 
+
 .ecosystem-text h2 {
-    font-size: clamp(55px, 7vw, 95px);
+    font-size:
+        clamp(55px, 7vw, 95px);
 }
 
-.ecosystem-text > p:not(.small-title) {
+
+.ecosystem-text>p:not(.small-title) {
     max-width: 570px;
 
     margin-top: 30px;
 
-    font-size: 15px;
+    font-size: 14px;
 
     line-height: 1.8;
 
     color: var(--muted);
 }
 
+
 .green-button {
     flex-shrink: 0;
 
-    padding: 16px 24px;
+    padding:
+        16px 24px;
 
-    border: 1px solid var(--green-bright);
+    border:
+        1px solid var(--green-bright);
 
     color: var(--paper);
 
-    font-size: 9px;
+    font-size: 8px;
 
     letter-spacing: 2px;
-
-    transition:
-        background 0.3s ease,
-        color 0.3s ease,
-        transform 0.3s ease;
 }
+
 
 .green-button:hover {
     background: var(--green-bright);
@@ -1086,20 +1499,23 @@ nav a:hover {
     transform: translateY(-3px);
 }
 
+
 .locked-button {
     flex-shrink: 0;
 
     min-width: 190px;
 
-    padding: 20px 28px;
+    padding:
+        20px 28px;
 
-    border: 1px solid rgba(233, 230, 220, 0.25);
+    border:
+        1px solid rgba(233, 230, 220, .25);
 
     background: transparent;
 
     color: var(--paper);
 
-    font-size: 11px;
+    font-size: 10px;
 
     letter-spacing: 2px;
 
@@ -1114,15 +1530,18 @@ nav a:hover {
     gap: 8px;
 
     transition:
-        border-color 0.3s ease,
-        background 0.3s ease;
+        border-color .3s ease,
+        background .3s ease;
 }
+
 
 .locked-button:hover {
     border-color: var(--green);
 
-    background: rgba(120, 156, 101, 0.06);
+    background:
+        rgba(120, 156, 101, .06);
 }
+
 
 .locked-button small {
     font-size: 7px;
@@ -1132,45 +1551,56 @@ nav a:hover {
     letter-spacing: 2px;
 }
 
+
 .lock-icon {
-    font-size: 15px;
+    font-size: 14px;
 }
 
 
-/* =========================================
-   DECISIÓN FINAL
-========================================= */
+/* =========================================================
+   22. DECISIÓN FINAL
+   ========================================================= */
 
 .final-choice {
-    padding: 160px 6% 130px;
-
     max-width: 1200px;
 
     margin: 0 auto;
 
-    border-top: 1px solid var(--line);
+    padding:
+        160px 6% 130px;
+
+    border-top:
+        1px solid var(--line);
 }
 
+
 .final-choice h2 {
-    font-size: clamp(60px, 8vw, 110px);
+    font-size:
+        clamp(60px, 8vw, 110px);
 }
+
 
 .choice-grid {
     margin-top: 85px;
 
     display: grid;
 
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns:
+        1fr 1fr;
 
     gap: 18px;
 }
+
 
 .choice-card {
     min-height: 250px;
 
     padding: 32px;
 
-    border: 1px solid var(--line);
+    border:
+        1px solid var(--line);
+
+    background: #151512;
 
     text-decoration: none;
 
@@ -1180,57 +1610,66 @@ nav a:hover {
 
     gap: 20px;
 
-    background: #151512;
-
     transition:
-        transform 0.35s ease,
-        border-color 0.35s ease,
-        background 0.35s ease;
+        transform .35s ease,
+        border-color .35s ease,
+        background .35s ease;
 }
+
 
 .choice-card:hover {
     transform: translateY(-5px);
 
-    border-color: rgba(154, 183, 126, 0.5);
+    border-color:
+        rgba(154, 183, 126, .5);
 
     background: #191916;
 }
+
 
 .locked-choice {
     cursor: default;
 }
 
+
 .locked-choice:hover {
     transform: none;
 }
 
+
 .choice-number {
     color: var(--green-bright);
 
-    font-size: 11px;
+    font-size: 10px;
 
     letter-spacing: 2px;
 }
 
+
 .choice-card h3 {
-    font-family: Georgia, "Times New Roman", serif;
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
 
     font-size: 30px;
 
     font-weight: 400;
 }
 
+
 .choice-card p {
     max-width: 360px;
 
     margin-top: 15px;
 
-    font-size: 12px;
+    font-size: 11px;
 
     line-height: 1.7;
 
     color: var(--muted);
 }
+
 
 .choice-card strong {
     display: block;
@@ -1239,22 +1678,25 @@ nav a:hover {
 
     color: var(--green-bright);
 
-    font-size: 9px;
+    font-size: 8px;
 
     letter-spacing: 2px;
 }
+
 
 .choice-card small {
     display: block;
 
     margin-top: 12px;
 
-    color: rgba(233, 230, 220, 0.45);
+    color:
+        rgba(233, 230, 220, .45);
 
-    font-size: 8px;
+    font-size: 7px;
 
     letter-spacing: 2px;
 }
+
 
 .final-brand {
     margin-top: 140px;
@@ -1262,16 +1704,20 @@ nav a:hover {
     text-align: center;
 }
 
-.final-brand > span {
-    font-size: 25px;
 
-    font-weight: 500;
+.final-brand>span {
+    font-family: "Syne", sans-serif;
+
+    font-size: 24px;
+
+    font-weight: 600;
 }
+
 
 .final-brand p {
     margin-top: 12px;
 
-    font-size: 8px;
+    font-size: 7px;
 
     letter-spacing: 4px;
 
@@ -1279,14 +1725,15 @@ nav a:hover {
 }
 
 
-/* =========================================
-   FORMULARIO PLACEHOLDER
-========================================= */
+/* =========================================================
+   23. ECO.LAB PLACEHOLDER
+   ========================================================= */
 
 .placeholder-section {
     min-height: 500px;
 
-    padding: 130px 6%;
+    padding:
+        130px 6%;
 
     display: flex;
 
@@ -1299,30 +1746,35 @@ nav a:hover {
 
     background: #151512;
 
-    border-top: 1px solid var(--line);
+    border-top:
+        1px solid var(--line);
 }
+
 
 .placeholder-section h2 {
-    font-size: clamp(50px, 7vw, 85px);
+    font-size:
+        clamp(50px, 7vw, 85px);
 }
 
-.placeholder-section > p:last-child {
+
+.placeholder-section>p:last-child {
     margin-top: 25px;
 
     color: var(--muted);
 
-    font-size: 14px;
+    font-size: 13px;
 }
 
 
-/* =========================================
-   FOOTER
-========================================= */
+/* =========================================================
+   24. FOOTER
+   ========================================================= */
 
 footer {
     min-height: 180px;
 
-    padding: 45px 6%;
+    padding:
+        45px 6%;
 
     display: flex;
 
@@ -1332,179 +1784,951 @@ footer {
 
     gap: 30px;
 
-    border-top: 1px solid var(--line);
+    border-top:
+        1px solid var(--line);
 
-    background: #0d0d0b;
+    background: var(--bg-deep);
 }
 
-footer p {
-    color: rgba(233, 230, 220, 0.45);
 
-    font-size: 9px;
+footer p {
+    color:
+        rgba(233, 230, 220, .45);
+
+    font-size: 8px;
 
     letter-spacing: 1.5px;
 }
 
 
-/* =========================================
-   TABLET
-========================================= */
+/* =========================================================
+   25. ECO.TRONIC
+   INTELIGENCIA DEL LABORATORIO
+   ========================================================= */
+
+.eco-tronic {
+    position: fixed;
+
+    top: 24px;
+    left: 24px;
+
+    width: 320px;
+
+    height:
+        calc(100vh - 48px);
+
+    max-height: 720px;
+
+    z-index: 9000;
+
+    display: flex;
+
+    flex-direction: column;
+
+    padding: 22px;
+
+    color: var(--paper);
+
+    background:
+        linear-gradient(145deg,
+            rgba(255, 255, 255, .09),
+            rgba(10, 13, 10, .82));
+
+    border:
+        1px solid rgba(235, 225, 200, .30);
+
+    border-radius: 22px;
+
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, .40),
+        0 0 30px rgba(168, 191, 122, .06),
+        inset 0 0 30px rgba(255, 255, 255, .025);
+
+    overflow: hidden;
+}
+
+
+/* brillo superior */
+
+.eco-tronic::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 20px;
+    right: 20px;
+
+    height: 1px;
+
+    background:
+        linear-gradient(90deg,
+            transparent,
+            rgba(168, 191, 122, .75),
+            transparent);
+}
+
+
+/* brillo ambiental */
+
+.eco-tronic::after {
+    content: "";
+
+    position: absolute;
+
+    width: 180px;
+    height: 180px;
+
+    top: -100px;
+    right: -90px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(168, 191, 122, .08);
+
+    filter: blur(40px);
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   26. ECO.TRONIC HEADER
+   ========================================================= */
+
+.tronic-header {
+    position: relative;
+
+    z-index: 2;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 12px;
+}
+
+
+.tronic-brand {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+}
+
+
+.tronic-brand>div {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 3px;
+}
+
+
+.tronic-brand strong {
+    font-family: "Syne", sans-serif;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    letter-spacing: 1px;
+}
+
+
+.tronic-brand strong span {
+    color: var(--green-bright);
+}
+
+
+.tronic-brand small {
+    font-size: 6px;
+
+    letter-spacing: 1.4px;
+
+    color:
+        rgba(244, 241, 233, .40);
+}
+
+
+.tronic-status {
+    width: 7px;
+    height: 7px;
+
+    flex: 0 0 7px;
+
+    border-radius: 50%;
+
+    background: var(--green-bright);
+
+    box-shadow:
+        0 0 6px rgba(168, 191, 122, .8),
+        0 0 15px rgba(168, 191, 122, .3);
+}
+
+
+/* =========================================================
+   27. CERRAR ECO.TRONIC
+   ========================================================= */
+
+.tronic-close {
+    width: 30px;
+    height: 30px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border:
+        1px solid rgba(235, 225, 200, .20);
+
+    border-radius: 50%;
+
+    background:
+        rgba(255, 255, 255, .035);
+
+    color: var(--paper);
+
+    font-size: 19px;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition:
+        background .25s ease,
+        border-color .25s ease,
+        transform .25s ease;
+}
+
+
+.tronic-close:hover {
+    border-color:
+        rgba(168, 191, 122, .50);
+
+    background:
+        rgba(168, 191, 122, .10);
+
+    transform: rotate(90deg);
+}
+
+
+/* =========================================================
+   28. LÍNEA ECO.TRONIC
+   ========================================================= */
+
+.tronic-line {
+    position: relative;
+
+    z-index: 2;
+
+    width: 100%;
+
+    height: 1px;
+
+    margin:
+        18px 0 15px;
+
+    background:
+        linear-gradient(90deg,
+            rgba(235, 225, 200, .16),
+            transparent);
+}
+
+
+/* =========================================================
+   29. ÁREA DE CHAT
+   ========================================================= */
+
+.tronic-chat {
+    position: relative;
+
+    z-index: 2;
+
+    flex: 1;
+
+    min-height: 0;
+
+    overflow-y: auto;
+
+    padding-right: 4px;
+
+    scrollbar-width: thin;
+
+    scrollbar-color:
+        rgba(168, 191, 122, .25) transparent;
+}
+
+
+.tronic-chat::-webkit-scrollbar {
+    width: 3px;
+}
+
+
+.tronic-chat::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+
+.tronic-chat::-webkit-scrollbar-thumb {
+    background:
+        rgba(168, 191, 122, .25);
+
+    border-radius: 10px;
+}
+
+
+/* =========================================================
+   30. BIENVENIDA
+   ========================================================= */
+
+.tronic-welcome {
+    padding:
+        20px 5px 25px;
+}
+
+
+.tronic-orb {
+    position: relative;
+
+    width: 55px;
+    height: 55px;
+
+    margin-bottom: 22px;
+
+    border:
+        1px solid rgba(168, 191, 122, .35);
+
+    border-radius: 50%;
+
+    box-shadow:
+        0 0 20px rgba(168, 191, 122, .07),
+        inset 0 0 20px rgba(168, 191, 122, .05);
+}
+
+
+.tronic-orb::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 9px;
+
+    border:
+        1px solid rgba(235, 225, 200, .25);
+
+    border-radius: 50%;
+}
+
+
+.tronic-orb::after {
+    content: "";
+
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    width: 7px;
+    height: 7px;
+
+    transform:
+        translate(-50%, -50%);
+
+    border-radius: 50%;
+
+    background:
+        var(--green-bright);
+
+    box-shadow:
+        0 0 10px rgba(168, 191, 122, .8);
+}
+
+
+.tronic-welcome h2 {
+    margin: 0 0 9px;
+
+    font-family:
+        "Syne",
+        sans-serif;
+
+    font-size: 28px;
+
+    font-weight: 600;
+}
+
+
+.tronic-welcome p {
+    margin: 7px 0;
+
+    font-size: 10px;
+
+    line-height: 1.6;
+
+    color:
+        rgba(244, 241, 233, .55);
+}
+
+
+.tronic-welcome strong {
+    color: var(--green-bright);
+
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   31. MENSAJES
+   ========================================================= */
+
+.tronic-messages {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+}
+
+
+.tronic-message {
+    max-width: 88%;
+
+    padding:
+        10px 12px;
+
+    border-radius: 12px;
+
+    font-size: 9px;
+
+    line-height: 1.5;
+
+    animation:
+        tronicMessageIn .35s var(--ease);
+}
+
+
+.tronic-message.bot {
+    align-self: flex-start;
+
+    background:
+        rgba(168, 191, 122, .07);
+
+    border:
+        1px solid rgba(168, 191, 122, .13);
+
+    color:
+        rgba(244, 241, 233, .78);
+}
+
+
+.tronic-message.user {
+    align-self: flex-end;
+
+    background:
+        rgba(255, 255, 255, .07);
+
+    border:
+        1px solid rgba(235, 225, 200, .12);
+
+    color: var(--paper);
+}
+
+
+@keyframes tronicMessageIn {
+
+    from {
+        opacity: 0;
+        transform: translateY(7px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+/* =========================================================
+   32. OPCIONES
+   ========================================================= */
+
+.tronic-options {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 6px;
+
+    margin-top: 10px;
+}
+
+
+.tronic-options button {
+    width: 100%;
+
+    padding:
+        11px 12px;
+
+    text-align: left;
+
+    font-family:
+        "DM Sans",
+        sans-serif;
+
+    font-size: 8px;
+
+    font-weight: 600;
+
+    letter-spacing: 1px;
+
+    color:
+        rgba(244, 241, 233, .68);
+
+    background:
+        rgba(255, 255, 255, .025);
+
+    border:
+        1px solid rgba(235, 225, 200, .13);
+
+    border-radius: 9px;
+
+    cursor: pointer;
+
+    transition:
+        background .25s ease,
+        border-color .25s ease,
+        transform .25s ease,
+        color .25s ease;
+}
+
+
+.tronic-options button:hover {
+    color: var(--paper);
+
+    background:
+        rgba(168, 191, 122, .08);
+
+    border-color:
+        rgba(168, 191, 122, .30);
+
+    transform:
+        translateX(3px);
+}
+
+
+/* =========================================================
+   33. INPUT CHAT
+   ========================================================= */
+
+.tronic-input {
+    position: relative;
+
+    z-index: 2;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    margin-top: 12px;
+
+    padding: 5px;
+
+    border:
+        1px solid rgba(235, 225, 200, .18);
+
+    border-radius: 12px;
+
+    background:
+        rgba(0, 0, 0, .16);
+}
+
+
+.tronic-input input {
+    flex: 1;
+
+    min-width: 0;
+
+    padding:
+        9px 8px;
+
+    border: 0;
+
+    outline: 0;
+
+    background: transparent;
+
+    color: var(--paper);
+
+    font-size: 9px;
+}
+
+
+.tronic-input input::placeholder {
+    color:
+        rgba(244, 241, 233, .30);
+}
+
+
+.tronic-input button {
+    width: 32px;
+    height: 32px;
+
+    flex-shrink: 0;
+
+    border-radius: 8px;
+
+    background:
+        rgba(168, 191, 122, .13);
+
+    color: var(--green-bright);
+
+    cursor: pointer;
+
+    transition:
+        background .25s ease,
+        transform .25s ease;
+}
+
+
+.tronic-input button:hover {
+    background:
+        rgba(168, 191, 122, .23);
+
+    transform:
+        translateY(-1px);
+}
+
+
+/* =========================================================
+   34. FOOTER ECO.TRONIC
+   ========================================================= */
+
+.tronic-footer {
+    position: relative;
+
+    z-index: 2;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 10px;
+
+    margin-top: 12px;
+
+    font-size: 6px;
+
+    letter-spacing: 1.3px;
+
+    color:
+        rgba(244, 241, 233, .24);
+}
+
+
+/* =========================================================
+   35. BOTÓN ECO.TRONIC EN MÓVIL
+   ========================================================= */
+
+.tronic-toggle {
+    position: fixed;
+
+    left: 20px;
+    bottom: 20px;
+
+    z-index: 8999;
+
+    width: 50px;
+    height: 50px;
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    flex-direction: column;
+
+    gap: 5px;
+
+    border:
+        1px solid rgba(235, 225, 200, .28);
+
+    border-radius: 50%;
+
+    background:
+        rgba(10, 13, 10, .80);
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, .35),
+        0 0 20px rgba(168, 191, 122, .06);
+
+    cursor: pointer;
+}
+
+
+.tronic-toggle span {
+    width: 17px;
+    height: 1px;
+
+    background: var(--paper);
+}
+
+
+/* =========================================================
+   36. TABLET
+   ========================================================= */
 
 @media (max-width: 900px) {
 
     header {
-        padding: 0 4%;
+        padding:
+            0 4%;
     }
+
 
     nav {
         gap: 14px;
     }
 
+
     nav a {
-        font-size: 8px;
+        font-size: 7px;
 
         letter-spacing: 1px;
     }
 
-    .pillars {
-        grid-template-columns: 1fr 1fr;
+
+    .hero-sign {
+        width:
+            min(720px, 82vw);
     }
+
+
+    .hero-sign-frame {
+        padding:
+            14px 28px;
+    }
+
+
+    .hero-brand-title {
+        font-size:
+            clamp(24px, 5vw, 48px);
+
+        letter-spacing:
+            -2px;
+    }
+
+
+    .pillars {
+        grid-template-columns:
+            1fr 1fr;
+    }
+
 
     .projects-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns:
+            repeat(2, 1fr);
 
-        gap: 35px 15px;
+        gap:
+            35px 15px;
     }
+
 
     .project-card:last-child {
-        grid-column: 1 / -1;
+        grid-column:
+            1 / -1;
 
-        width: calc(50% - 7.5px);
+        width:
+            calc(50% - 7.5px);
 
-        justify-self: center;
+        justify-self:
+            center;
     }
+
 
     .ecosystem-block {
-        padding: 110px 7%;
+        padding:
+            110px 7%;
 
-        align-items: flex-start;
+        align-items:
+            flex-start;
 
-        flex-direction: column;
+        flex-direction:
+            column;
     }
+
 
     .choice-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns:
+            1fr;
     }
+
 
     .connection-system {
-        transform: scale(0.9);
+        transform:
+            scale(.9);
 
-        transform-origin: center;
+        transform-origin:
+            center;
     }
+
+
+    .eco-tronic {
+        width: 300px;
+
+        top: 18px;
+        left: 18px;
+    }
+
 }
 
 
-/* =========================================
-   MÓVIL
-========================================= */
+/* =========================================================
+   37. MÓVIL
+   ========================================================= */
 
 @media (max-width: 650px) {
+
+    /* HEADER */
 
     header {
         height: 66px;
 
-        padding: 0 5%;
+        padding:
+            0 5%;
     }
+
 
     .logo {
         font-size: 14px;
     }
+
 
     nav {
         display: none;
     }
 
 
+    .menu-button {
+        display: flex;
+    }
+
+
+    .mobile-menu {
+        display: flex;
+    }
+
+
     /* HERO */
 
     .hero {
-        min-height: 700px;
+        min-height:
+            700px;
     }
 
+
     .hero-image {
-        object-position: center;
+        object-position:
+            center;
     }
+
 
     .hero-overlay {
         background:
-            linear-gradient(
-                to bottom,
-                rgba(8, 8, 7, 0.16) 0%,
-                rgba(8, 8, 7, 0.03) 45%,
-                rgba(17, 17, 15, 0.92) 100%
-            );
+            linear-gradient(to bottom,
+                rgba(8, 8, 7, .16) 0%,
+                rgba(8, 8, 7, .03) 45%,
+                rgba(17, 17, 15, .92) 100%);
     }
+
 
     .hero-sign {
-        width: 92%;
-
-        padding: 30px 16px 27px;
+        width: 100%;
     }
+
+
+    .hero-sign-frame {
+        padding:
+            11px 17px;
+
+        border-radius:
+            999px;
+    }
+
 
     .hero-brand-title {
-        font-size: clamp(31px, 9.7vw, 52px);
+        font-size:
+            clamp(20px, 7.2vw, 34px);
 
-        letter-spacing: -2px;
-
-        white-space: nowrap;
+        letter-spacing:
+            -1.4px;
     }
 
-    /*
-       En móvil reducimos el zoom porque
-       el cursor no existe de la misma forma.
-    */
-
-    .hero-brand-title:hover {
-        transform: scale(1.035);
-
-        letter-spacing: -1px;
-    }
 
     .hero-lab {
-        font-size: 8px;
+        margin-top: 15px;
 
-        letter-spacing: 3px;
+        font-size:
+            clamp(22px, 7vw, 31px);
     }
+
 
     .hero-line {
-        width: 80px;
+        width: 70px;
 
-        margin: 18px auto 15px;
+        margin:
+            16px auto 13px;
     }
+
 
     .hero-slogan {
         font-size: 8px;
 
-        letter-spacing: 2.5px;
+        letter-spacing:
+            2.2px;
+
+        line-height:
+            1.5;
     }
 
+
     .hero-description {
-        max-width: 290px;
+        max-width: 300px;
 
-        margin-top: 22px;
+        margin-top: 20px;
 
-        font-size: 8px;
+        font-size: 7px;
 
         line-height: 1.7;
 
-        letter-spacing: 2px;
+        letter-spacing:
+            1.8px;
     }
+
 
     .hero-button {
-        font-size: 8px;
+        padding:
+            12px 17px;
 
-        padding: 12px 17px;
+        font-size: 7px;
     }
+
 
     .hero-scroll {
         bottom: 20px;
@@ -1514,14 +2738,19 @@ footer p {
     /* PRESENTACIÓN */
 
     .presentation-intro {
-        padding: 105px 7% 90px;
+        padding:
+            105px 7% 90px;
     }
+
 
     .presentation-intro h2 {
-        font-size: clamp(50px, 15vw, 76px);
+        font-size:
+            clamp(50px, 15vw, 76px);
 
-        letter-spacing: -3px;
+        letter-spacing:
+            -3px;
     }
+
 
     .intro-text {
         margin-top: 32px;
@@ -1533,20 +2762,26 @@ footer p {
     /* IDEA */
 
     .idea-section {
-        padding: 85px 7% 105px;
+        padding:
+            85px 7% 105px;
 
         display: block;
     }
+
 
     .idea-content {
         margin-top: 35px;
     }
 
-    .idea-content h2 {
-        font-size: clamp(45px, 13vw, 68px);
 
-        letter-spacing: -3px;
+    .idea-content h2 {
+        font-size:
+            clamp(45px, 13vw, 68px);
+
+        letter-spacing:
+            -3px;
     }
+
 
     .idea-content h3 {
         font-size: 31px;
@@ -1556,18 +2791,24 @@ footer p {
     /* PILARES */
 
     .pillars-section {
-        padding: 100px 7% 110px;
+        padding:
+            100px 7% 110px;
     }
 
+
     .pillars-title h2 {
-        font-size: clamp(48px, 13vw, 70px);
+        font-size:
+            clamp(48px, 13vw, 70px);
     }
+
 
     .pillars {
         margin-top: 60px;
 
-        grid-template-columns: 1fr;
+        grid-template-columns:
+            1fr;
     }
+
 
     .pillar {
         min-height: auto;
@@ -1575,15 +2816,19 @@ footer p {
         padding: 27px;
     }
 
+
     .pillar h3 {
         margin-top: 35px;
     }
 
+
     .technology-quote {
         margin-top: 50px;
 
-        align-items: flex-start;
+        align-items:
+            flex-start;
     }
+
 
     .technology-quote p {
         font-size: 16px;
@@ -1595,23 +2840,30 @@ footer p {
     /* CONEXIONES */
 
     .connection-section {
-        padding: 105px 7% 120px;
+        padding:
+            105px 7% 120px;
     }
+
 
     .connection-section h2 {
-        font-size: clamp(43px, 12vw, 64px);
+        font-size:
+            clamp(43px, 12vw, 64px);
 
-        letter-spacing: -3px;
+        letter-spacing:
+            -3px;
     }
+
 
     .connection-system {
         height: 390px;
 
         margin-top: 50px;
 
-        transform: scale(0.72);
+        transform:
+            scale(.72);
 
-        transform-origin: top center;
+        transform-origin:
+            top center;
 
         width: 138%;
 
@@ -1624,30 +2876,41 @@ footer p {
     /* PROYECTOS */
 
     .projects-section {
-        padding: 105px 7% 115px;
+        padding:
+            105px 7% 115px;
     }
+
 
     .projects-heading {
         margin-bottom: 55px;
     }
 
-    .projects-heading h2 {
-        font-size: clamp(48px, 13vw, 72px);
 
-        letter-spacing: -3px;
+    .projects-heading h2 {
+        font-size:
+            clamp(48px, 13vw, 72px);
+
+        letter-spacing:
+            -3px;
     }
 
+
     .projects-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns:
+            1fr;
 
         gap: 50px;
     }
 
-    .project-card:last-child {
-        grid-column: auto;
 
-        width: auto;
+    .project-card:last-child {
+        grid-column:
+            auto;
+
+        width:
+            auto;
     }
+
 
     .project-info h3 {
         font-size: 20px;
@@ -1657,22 +2920,29 @@ footer p {
     /* ECO.LAB / ECO.RED */
 
     .ecosystem-block {
-        min-height: auto;
+        min-height:
+            auto;
 
-        padding: 105px 7%;
+        padding:
+            105px 7%;
 
         gap: 45px;
     }
 
-    .ecosystem-text h2 {
-        font-size: clamp(48px, 13vw, 72px);
 
-        letter-spacing: -3px;
+    .ecosystem-text h2 {
+        font-size:
+            clamp(48px, 13vw, 72px);
+
+        letter-spacing:
+            -3px;
     }
 
-    .ecosystem-text > p:not(.small-title) {
+
+    .ecosystem-text>p:not(.small-title) {
         font-size: 14px;
     }
+
 
     .green-button,
     .locked-button {
@@ -1683,67 +2953,216 @@ footer p {
     /* DECISIÓN FINAL */
 
     .final-choice {
-        padding: 110px 7% 90px;
+        padding:
+            110px 7% 90px;
     }
+
 
     .final-choice h2 {
-        font-size: clamp(52px, 15vw, 78px);
+        font-size:
+            clamp(52px, 15vw, 78px);
 
-        letter-spacing: -3px;
+        letter-spacing:
+            -3px;
     }
+
 
     .choice-grid {
         margin-top: 55px;
 
-        grid-template-columns: 1fr;
+        grid-template-columns:
+            1fr;
     }
 
-    .choice-card {
-        min-height: 220px;
 
-        grid-template-columns: 40px 1fr;
+    .choice-card {
+        min-height:
+            220px;
+
+        grid-template-columns:
+            40px 1fr;
 
         padding: 25px;
     }
 
+
     .choice-card h3 {
         font-size: 25px;
     }
+
 
     .final-brand {
         margin-top: 90px;
     }
 
 
+    /* PLACEHOLDER */
+
+    .placeholder-section {
+        padding:
+            105px 7%;
+    }
+
+
+    .placeholder-section h2 {
+        font-size:
+            clamp(45px, 13vw, 70px);
+    }
+
+
     /* FOOTER */
 
     footer {
-        min-height: 220px;
+        min-height:
+            220px;
 
-        padding: 40px 7%;
+        padding:
+            40px 7%;
 
-        flex-direction: column;
+        flex-direction:
+            column;
 
-        align-items: flex-start;
+        align-items:
+            flex-start;
+    }
+
+
+    /* ECO.TRONIC */
+
+    .eco-tronic {
+        top: 12px;
+        left: 12px;
+
+        width:
+            calc(100vw - 24px);
+
+        height:
+            calc(100vh - 24px);
+
+        max-height:
+            none;
+
+        padding: 18px;
+
+        border-radius: 19px;
+
+        transform:
+            translateY(-120%);
+
+        opacity: 0;
+
+        pointer-events: none;
+
+        transition:
+            transform .45s var(--ease),
+            opacity .3s ease;
+    }
+
+
+    .eco-tronic.is-open {
+        transform:
+            translateY(0);
+
+        opacity: 1;
+
+        pointer-events: auto;
+    }
+
+
+    .tronic-toggle {
+        display: flex;
     }
 
 }
 
 
-/* =========================================
-   REDUCIR ANIMACIONES SI EL USUARIO LO PIDE
-========================================= */
+/* =========================================================
+   38. PANTALLAS MUY PEQUEÑAS
+   ========================================================= */
+
+@media (max-width: 390px) {
+
+    .hero-sign-frame {
+        padding:
+            9px 14px;
+    }
+
+
+    .hero-brand-title {
+        font-size:
+            clamp(18px, 7vw, 29px);
+
+        letter-spacing:
+            -1.1px;
+    }
+
+
+    .hero-lab {
+        font-size:
+            clamp(20px, 6.8vw, 27px);
+    }
+
+
+    .eco-tronic {
+        padding: 15px;
+    }
+
+
+    .tronic-brand strong {
+        font-size: 12px;
+    }
+
+
+    .tronic-brand small {
+        font-size: 5.5px;
+    }
+
+
+    .tronic-welcome {
+        padding-top: 15px;
+    }
+
+
+    .tronic-welcome h2 {
+        font-size: 25px;
+    }
+
+
+    .tronic-options button {
+        padding:
+            10px;
+    }
+
+
+    .tronic-footer {
+        font-size: 5px;
+    }
+
+}
+
+
+/* =========================================================
+   39. REDUCCIÓN DE MOVIMIENTO
+   ========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
 
     *,
     *::before,
     *::after {
-        scroll-behavior: auto !important;
+        animation-duration:
+            .01ms !important;
 
-        transition-duration: 0.01ms !important;
+        animation-iteration-count:
+            1 !important;
 
-        animation-duration: 0.01ms !important;
+        transition-duration:
+            .01ms !important;
     }
 
 }
